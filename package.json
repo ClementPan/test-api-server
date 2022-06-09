@@ -21,6 +21,7 @@
     "express-handlebars": "^5.1.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.9.25",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "ws": "^8.7.0"
   }
 }
