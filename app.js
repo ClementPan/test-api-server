@@ -10,10 +10,13 @@ const ws = require('ws');
 
 
 ////////////////////////
+const server = app.listen(port, () => {
+  console.log(`[[[ Websocket app listening at http://localhost:${port}`)
+});
 
 // Set up a headless websocket server that prints any
 // events that come in.
-const wsServer = new ws.Server({ noServer: true })
+const wsServer = new ws.Server({ server })
 wsServer.on('connection', socket => {
   console.log('[[[ wsServer.on connection ');
 
@@ -37,10 +40,6 @@ wsServer.on('connection', socket => {
   });
 });
 
-const server = app.listen(port, () => {
-  console.log(`[[[ Websocket app listening at http://localhost:${port}`)
-});
-
 server.on('upgrade', (request, socket, head) => {
   console.log('[[[ server.on upgrade');
   wsServer.handleUpgrade(request, socket, head, socket => {
@@ -49,21 +48,15 @@ server.on('upgrade', (request, socket, head) => {
 });
 ////////////////////////
 
-// // require routes
+// require routes
 // const routes = require('./routes')
 
 // // require Todo
 // const { urlencoded } = require('body-parser')
-
-
 // app.use(cors())
-
 // app.use(methodOverride('_method'))
-
 // app.use(bodyParser.urlencoded({ extended: true }))
-
 // app.use(routes)
-
 // app.listen(port, () => {
 //   console.log(`The app is listening on http://localhost:${port}.`)
 // })
